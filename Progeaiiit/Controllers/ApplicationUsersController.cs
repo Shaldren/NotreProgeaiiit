@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 using Progeaiiit.Models;
 
 namespace Progeaiiit.Controllers
@@ -14,10 +15,12 @@ namespace Progeaiiit.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private ApplicationUserManager _userManager ;
+
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            return View(db.ApplicationUsers.ToList());
+            return View(UserManager.Users.ToList());
         }
 
         // GET: ApplicationUsers/Details/5
@@ -27,7 +30,7 @@ namespace Progeaiiit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            ApplicationUser applicationUser = UserManager.Users.FirstOrDefault(u => u.Id == id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -50,7 +53,9 @@ namespace Progeaiiit.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ApplicationUsers.Add(applicationUser);
+
+                UserManager.CreateAsync(applicationUser);
+                //db.ApplicationUsers.Add(applicationUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +70,7 @@ namespace Progeaiiit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            ApplicationUser applicationUser = UserManager.Users.FirstOrDefault(u => u.Id == id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -82,7 +87,9 @@ namespace Progeaiiit.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
+
+                UserManager.UpdateAsync(applicationUser);
+                //db.Entry(applicationUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -96,7 +103,7 @@ namespace Progeaiiit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            ApplicationUser applicationUser = UserManager.Users.FirstOrDefault(u => u.Id == id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -109,8 +116,9 @@ namespace Progeaiiit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            db.ApplicationUsers.Remove(applicationUser);
+            ApplicationUser applicationUser = UserManager.Users.FirstOrDefault(u => u.Id == id);
+            UserManager.DeleteAsync(applicationUser);
+            //db.ApplicationUsers.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -122,6 +130,18 @@ namespace Progeaiiit.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
     }
 }
