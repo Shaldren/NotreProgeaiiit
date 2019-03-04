@@ -29,10 +29,12 @@ namespace Progeaiiit.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Race race = db.Races.Find(id);
+            race.Pois.OrderBy(o => o.Order);
             if (race == null)
             {
                 return HttpNotFound();
             }
+            ViewData["race"] = race;
             return View(race);
         }
 

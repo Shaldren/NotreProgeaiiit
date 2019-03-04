@@ -58,6 +58,10 @@
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
 
+        @{
+            Html.RenderPartial("MapView");
+        }
+
     </dl>
 </div>
 <p>
