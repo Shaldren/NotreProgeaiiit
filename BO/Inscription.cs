@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class Inscription
+    public class Inscription
     {
+		public int Id { get; set; }
         public float Amount { get; set; }
         //public ApplicationUser ApplicationUser { get; set; }
         public string ApplicationUserId { get; set; }

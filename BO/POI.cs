@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class POI
+    public class POI
     {
         public string Name { get; set; }
         public int Id { get; set; }    

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class DisplayConfiguration
+    public class DisplayConfiguration
     {
         //public ApplicationUser ApplicationUser { get; set; }
         public string DeviceName { get; set; }

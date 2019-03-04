@@ -30,6 +30,16 @@ namespace Progeaiiit.Models
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<Progeaiiit.Models.ApplicationUser> ApplicationUsers { get; set; }
-    }
+		public System.Data.Entity.DbSet<BO.Category> Categories { get; set; }
+
+		public System.Data.Entity.DbSet<BO.DisplayConfiguration> DisplayConfigurations { get; set; }
+
+		public System.Data.Entity.DbSet<BO.POI> POIs { get; set; }
+
+		public System.Data.Entity.DbSet<BO.Inscription> Inscriptions { get; set; }
+
+		public System.Data.Entity.DbSet<BO.Race> Races { get; set; }
+
+		//public System.Data.Entity.DbSet<Progeaiiit.Models.ApplicationUser> ApplicationUsers { get; set; }
+	}
 }

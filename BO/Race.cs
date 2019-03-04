@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class Race
+    public class Race
     {
         public string City { get; set; }
         public DateTime DateEnd { get; set; }
