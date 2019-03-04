@@ -13,34 +13,35 @@ namespace Progeaiiit.Controllers
         public ActionResult Index()
         {
             Race race = new Race();
-            race.setCity("Nantes");
+            
             List<POI> pois = new List<POI>();
-
+            
             POI poi = new POI();
-            poi.setName("Nom 1");
-            poi.setId(1);
-            poi.setCooX(47.226733);
-            poi.setCooY(-1.620663);
+            poi.Name ="Nom 1";
+            poi.Id = 1;
+            poi.CooX = 47.226733;
+            poi.CooY = -1.620663;
             pois.Add(poi);
             POI poi2 = new POI();
-            poi2.setName("Nom 1");
-            poi2.setId(1);
-            poi2.setCooX(47.224944);
-            poi2.setCooY(-1.632408);
+            poi2.Name = "Nom 1";
+            poi2.Id = 1;
+            poi2.CooX = 47.224944;
+            poi2.CooY = -1.632408;
             pois.Add(poi2);
             POI poi3 = new POI();
-            poi3.setName("Nom 1");
-            poi3.setId(1);
-            poi3.setCooX(47.228687);
-            poi3.setCooY(-1.627983);
+            poi3.Name = "Nom 1";
+            poi3.Id = 1;
+            poi3.CooX = 47.228687;
+            poi3.CooY = -1.627983;
             pois.Add(poi3);
             POI poi4 = new POI();
-            poi4.setName("Nom 1");
-            poi4.setId(1);
-            poi4.setCooX(47.225732);
-            poi4.setCooY(-1.627884);
+            poi4.Name = "Nom 1";
+            poi4.Id = 1;
+            poi4.CooX = 47.225732;
+            poi4.CooY = -1.627884;
             pois.Add(poi4);
-            ViewData["race"] = pois;
+            race.Pois = pois;
+            ViewData["race"] = race;
             return View();
         }
     }
