@@ -63,25 +63,32 @@ namespace Progeaiiit.Controllers
                             vm.Race.Pois.Add(db.POIs.Find(i));
                         }
                     }
-
-                    if (vm.IdSelectedInscription.Any())
-                    {
-                        foreach (int i in vm.IdSelectedInscription)
-                        {
-                            vm.Race.Inscriptions.Add(db.Inscriptions.Find(i));
-                        }
-                    }                    
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(" Exception : {0}",e);
-                }				
-				
-                return RedirectToAction("Index");
-            }
+                    Console.WriteLine(" Exception : {0}", e);
+                }
 
-            db.Races.Add(vm.Race);
-            db.SaveChanges();
+                try
+                {                
+                    if (vm.IdSelectedInscription.Any())
+                        {
+                            foreach (int i in vm.IdSelectedInscription)
+                            {
+                                vm.Race.Inscriptions.Add(db.Inscriptions.Find(i));
+                            }
+                        }                    
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(" Exception : {0}", e);
+                }
+
+                db.Races.Add(vm.Race);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }            
 
             return View(vm);
         }
@@ -103,7 +110,7 @@ namespace Progeaiiit.Controllers
 			vm.POIs = db.POIs.ToList();
 			vm.Inscriptions = db.Inscriptions.ToList();
 			vm.Race = race;
-
+            
             try
             {
                 if (race.Pois.Any())
@@ -137,6 +144,9 @@ namespace Progeaiiit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(RaceVM vm)
         {
+            POI poi = new POI();
+            Inscription inscription = new Inscription();
+
             if (ModelState.IsValid)
             {
 				var race = db.Races.Include(p => p.Pois).FirstOrDefault(i => i.Id == vm.Race.Id);
@@ -146,8 +156,8 @@ namespace Progeaiiit.Controllers
 				race.Description = vm.Race.Description;
 				race.Title = vm.Race.Title;
 				race.ZipCode = vm.Race.ZipCode;
-				race.Pois = null;
-				race.Inscriptions = null;
+				race.Pois = new List<POI>();
+				race.Inscriptions = new List<Inscription>();
 
                 try
                 {
@@ -159,6 +169,15 @@ namespace Progeaiiit.Controllers
                         }
                     }
 
+                    vm.POIs = db.POIs.ToList();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception : {0}", e);
+                }
+
+                try
+                {
                     if (vm.IdSelectedInscription.Any())
                     {
                         foreach (int i in vm.IdSelectedInscription)
@@ -166,8 +185,7 @@ namespace Progeaiiit.Controllers
                             race.Inscriptions.Add(db.Inscriptions.Find(i));
                         }
                     }
-
-                    vm.POIs = db.POIs.ToList();
+                    
                     vm.Inscriptions = db.Inscriptions.ToList();                    
                 }
                 catch (Exception e)

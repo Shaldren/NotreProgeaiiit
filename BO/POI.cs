@@ -10,7 +10,9 @@ namespace BO
     {
         public string Name { get; set; }
         public int Id { get; set; }    
-        public int CooX { get; set; }
-        public int CooY { get; set; }
+        public double CooX { get; set; }
+        public double CooY { get; set; }
+
+        public Race Race { get; set; }
     }
 }
