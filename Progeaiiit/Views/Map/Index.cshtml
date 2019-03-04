@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Map test";
+}
+<br />
+<div id="map" class="container">
+    <!-- Ici s'affichera la carte -->
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script type="text/javascript">
+    // On initialise la latitude et la longitude de Nantes (centre de la carte)
+
+    var coor = [
+        { latitude: 47.226733, longitude: -1.620663 },
+        { latitude: 47.224944, longitude: -1.632408 },
+        { latitude: 47.228687, longitude: -1.627983 },
+        { latitude: 47.225732, longitude: -1.627884 }
+    ];
+
+    var macarte = null;
+    // Fonction d'initialisation de la carte
+    function initMap() {
+        // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+        macarte = L.map('map').setView([coor[0].latitude, coor[0].longitude], 11);
+        // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(macarte);
+
+        //previous = null;
+        waypoint = [];
+         @foreach (var POI in ViewBag.race.Pois)
+         {
+             @Html.Raw("waypoint.push(L.latLng("+@POI.CooX+", "+POI.CooY+"));")
+         }
+        L.Routing.control({
+            waypoints: waypoint
+        }).addTo(macarte);
+        coor.forEach(function (pos) {
+
+            var point = L.latLng(pos.latitude, pos.longitude);
+
+            waypoint.push(point);
+
+            /*
+            L.marker([pos.latitude, pos.longitude]).addTo(macarte);
+            if (previous != null) {
+                L.polygon(
+                    [
+                        [previous.latitude, previous.longitude],
+                        [pos.latitude, pos.longitude]
+                    ]).addTo(macarte);
+            }
+            previous = pos;
+            */
+        });
+        L.Routing.control({
+            waypoints: waypoint
+        }).addTo(macarte);
+    }
+    window.onload = function () {
+        // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+        initMap();
+    };
+</script>
+<style type="text/css">
+    #map { /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+        height: 400px;
+    }
+</style>
+
