@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BO;
 using Progeaiiit.Models;
+using BO.Auth;
 
 namespace Progeaiiit.Controllers
 {
@@ -29,7 +30,7 @@ namespace Progeaiiit.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Race race = db.Races.Find(id);
-            race.Pois.OrderBy(o => o.Order);
+            //race.Pois.OrderBy(o => o.Order);
             if (race == null)
             {
                 return HttpNotFound();
@@ -62,7 +63,7 @@ namespace Progeaiiit.Controllers
                     {
                         foreach (int i in vm.IdSelectedPOI)
                         {
-                            vm.Race.Pois.Add(db.POIs.Find(i));
+                            vm.Race.POIs.Add(db.POIs.Find(i));
                         }
                     }
                 }
@@ -115,9 +116,9 @@ namespace Progeaiiit.Controllers
             
             try
             {
-                if (race.Pois.Any())
+                if (race.POIs.Any())
                 {
-                    foreach (POI poi in race.Pois)
+                    foreach (POI poi in race.POIs)
                     {
                         vm.IdSelectedPOI.Add(poi.Id);
                     }
@@ -151,14 +152,14 @@ namespace Progeaiiit.Controllers
 
             if (ModelState.IsValid)
             {
-				var race = db.Races.Include(p => p.Pois).FirstOrDefault(i => i.Id == vm.Race.Id);
+				var race = db.Races.Include(p => p.POIs).FirstOrDefault(i => i.Id == vm.Race.Id);
 				race.City = vm.Race.City;
 				race.DateEnd = vm.Race.DateEnd;
 				race.DateStart = vm.Race.DateStart;
 				race.Description = vm.Race.Description;
 				race.Title = vm.Race.Title;
 				race.ZipCode = vm.Race.ZipCode;
-				race.Pois = new List<POI>();
+				race.POIs = new List<POI>();
 				race.Inscriptions = new List<Inscription>();
 
                 try
@@ -167,7 +168,7 @@ namespace Progeaiiit.Controllers
                     {
                         foreach (int i in vm.IdSelectedPOI)
                         {
-                            race.Pois.Add(db.POIs.Find(i));
+                            race.POIs.Add(db.POIs.Find(i));
                         }
                     }
 

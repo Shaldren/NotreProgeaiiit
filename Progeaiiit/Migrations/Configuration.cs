@@ -1,11 +1,12 @@
 namespace Progeaiiit.Migrations
 {
+    using BO.Auth;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Progeaiiit.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -13,7 +14,7 @@ namespace Progeaiiit.Migrations
             ContextKey = "Progeaiiit.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Progeaiiit.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
