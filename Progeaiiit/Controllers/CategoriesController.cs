@@ -40,6 +40,8 @@ namespace Progeaiiit.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            var vm = new CategoryVM();
+            vm.POIs = db.POIs.ToList();
             return View();
         }
 
@@ -48,16 +50,31 @@ namespace Progeaiiit.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title")] Category category)
+        public ActionResult Create(CategoryVM vm)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                try
+                {
+                    if (vm.IdSelectedPOI.Any())
+                    {
+                        foreach (int i in vm.IdSelectedPOI)
+                        {
+                            vm.POIs.Add(db.POIs.Find(i));
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(" Exception : {0}", e);
+                }
+
+                db.Categories.Add(vm.Category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(vm);
         }
 
         // GET: Categories/Edit/5
@@ -72,7 +89,27 @@ namespace Progeaiiit.Controllers
             {
                 return HttpNotFound();
             }
-            return View(category);
+
+            var vm = new CategoryVM();
+            vm.POIs = db.POIs.ToList();
+            vm.Category = category;
+
+            try
+            {
+                if (category.POIs.Any())
+                {
+                    foreach (POI poi in category.POIs)
+                    {
+                        vm.IdSelectedPOI.Add(poi.Id);
+                    }
+                }                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : {0}", e);
+            }
+
+            return View(vm);
         }
 
         // POST: Categories/Edit/5
@@ -80,15 +117,36 @@ namespace Progeaiiit.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title")] Category category)
+        public ActionResult Edit(CategoryVM vm)
         {
+            
+            POI poi = new POI();
             if (ModelState.IsValid)
             {
+                var category = db.Categories.Include(p => p.POIs).FirstOrDefault(i => i.Id == vm.Category.Id);
+                category.Title = vm.Category.Title;
+                category.POIs = new List<POI>();
+                try
+                {
+                    if (vm.IdSelectedPOI.Any())
+                    {
+                        foreach (int i in vm.IdSelectedPOI)
+                        {
+                            category.POIs.Add(db.POIs.Find(i));
+                        }
+                    }
+
+                    vm.POIs = db.POIs.ToList();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception : {0}", e);
+                }
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(vm);
         }
 
         // GET: Categories/Delete/5
