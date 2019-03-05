@@ -9,7 +9,6 @@ namespace BO
 {
     public class Race
     {
-        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -17,9 +16,9 @@ namespace BO
         public string ZipCode { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-                
-        public List<Inscription> Inscriptions { get; set; }
-        public List<POI> Pois { get; set; }        
-        
+
+        public virtual ICollection<Inscription> Inscriptions { get; set; }
+        public virtual ICollection<POI> POIs { get; set; }
+
     }
 }

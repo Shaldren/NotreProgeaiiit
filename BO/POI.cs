@@ -10,17 +10,14 @@ namespace BO
 {
     public class POI
     {
-        [Key]
-        [ForeignKey("Race")]
-        public int Race { get; set; }
-        [Key]
-        public int Order { get; set; }        
+        public int Id { get; set; }
+        public Race Race { get; set; }
         public string Name { get; set; }
-
-        [ForeignKey("Category")]
-        public int Category { get; set; }
+        public virtual Category Category { get; set; }
         public double CooX { get; set; }
         public double CooY { get; set; }
+
+        public virtual ICollection<Inscription> Inscriptions { get; set; }
 
         
         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace BO
 {
     public class DisplayConfiguration
     {
-        //public ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public string DeviceName { get; set; }
         public Guid Id { get; set; }
         public bool SpeedAvg { get; set; }

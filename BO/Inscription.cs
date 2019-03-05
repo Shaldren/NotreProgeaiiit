@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO.Auth;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,15 +11,13 @@ namespace BO
 {
     public class Inscription
     {
-        [Key]
-        public int Number { get; set; }
-        [ForeignKey("AspNetUsers")]
-        public string ApplicationUserId { get; set; }        
+        public int Id { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ICollection<POI> Positions { get; set; }
+        public virtual Race Race { get; set; }
 
-        [ForeignKey("POI")]
-        public List<POI> Position { get; set; }
+        [Display(Name = "Date d'inscription")]
+        public DateTime DateInscription { get; set; }
 
-        [ForeignKey("Race")]
-        public int RaceId { get; set; }
     }
 }

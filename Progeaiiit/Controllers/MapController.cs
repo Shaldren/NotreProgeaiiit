@@ -40,7 +40,7 @@ namespace Progeaiiit.Controllers
             poi4.CooX = 47.225732;
             poi4.CooY = -1.627884;
             pois.Add(poi4);
-            race.Pois = pois;
+            race.POIs = pois;
             ViewData["race"] = race;
             return View();
         }

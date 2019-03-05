@@ -12,6 +12,7 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using BO;
 using Progeaiiit.Models;
+using BO.Auth;
 
 namespace Progeaiiit.Controllers
 {
@@ -153,7 +154,7 @@ namespace Progeaiiit.Controllers
         [EnableQuery]
         public IQueryable<POI> GetPosition([FromODataUri] int key)
         {
-            return db.Inscriptions.Where(m => m.Id == key).SelectMany(m => m.Position);
+            return db.Inscriptions.Where(m => m.Id == key).SelectMany(m => m.Positions);
         }
 
         // GET: odata/Inscriptions(5)/Race

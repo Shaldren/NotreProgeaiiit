@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BO;
 using Progeaiiit.Models;
+using BO.Auth;
 
 namespace Progeaiiit.Controllers
 {
