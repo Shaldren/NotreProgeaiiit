@@ -16,11 +16,5 @@ namespace BO
         public virtual Category Category { get; set; }
         public double CooX { get; set; }
         public double CooY { get; set; }
-
-        public virtual ICollection<Inscription> Inscriptions { get; set; }
-        public virtual ICollection<Position> Positions { get; set; }
-
-
-
     }
 }

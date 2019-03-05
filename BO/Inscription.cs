@@ -13,9 +13,9 @@ namespace BO
     {
         public int Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public virtual ICollection<POI> Positions { get; set; }
         public virtual Race Race { get; set; }
-
+        public String Time { get; set; }
+        
         [Display(Name = "Date d'inscription")]
         public DateTime DateInscription { get; set; }
 

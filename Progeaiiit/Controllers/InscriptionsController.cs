@@ -150,13 +150,6 @@ namespace Progeaiiit.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: odata/Inscriptions(5)/Position
-        [EnableQuery]
-        public IQueryable<POI> GetPosition([FromODataUri] int key)
-        {
-            return db.Inscriptions.Where(m => m.Id == key).SelectMany(m => m.Positions);
-        }
-
         // GET: odata/Inscriptions(5)/Race
         [EnableQuery]
         public SingleResult<Race> GetRace([FromODataUri] int key)
