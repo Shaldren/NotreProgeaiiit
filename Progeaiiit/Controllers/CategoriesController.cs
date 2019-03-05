@@ -16,13 +16,13 @@ namespace Progeaiiit.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categories
+        // GET: Categories 
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
         }
 
-        // GET: Categories/Details/5
+        // GET: Categories/Details/5 
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,47 +37,30 @@ namespace Progeaiiit.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create
+        // GET: Categories/Create 
         public ActionResult Create()
         {
-            var vm = new CategoryVM();
-            vm.POIs = db.POIs.ToList();
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categories/Create 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for  
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598. 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CategoryVM vm)
+        public ActionResult Create([Bind(Include = "Id,Title")] Category category)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    if (vm.IdSelectedPOI.Any())
-                    {
-                        foreach (int i in vm.IdSelectedPOI)
-                        {
-                            vm.POIs.Add(db.POIs.Find(i));
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(" Exception : {0}", e);
-                }
-
-                db.Categories.Add(vm.Category);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(vm);
+            return View(category);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Categories/Edit/5 
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,67 +72,26 @@ namespace Progeaiiit.Controllers
             {
                 return HttpNotFound();
             }
-
-            var vm = new CategoryVM();
-            vm.POIs = db.POIs.ToList();
-            vm.Category = category;
-
-            try
-            {
-                if (category.POIs.Any())
-                {
-                    foreach (POI poi in category.POIs)
-                    {
-                        vm.IdSelectedPOI.Add(poi.Id);
-                    }
-                }                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception : {0}", e);
-            }
-
-            return View(vm);
+            return View(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categories/Edit/5 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for  
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598. 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CategoryVM vm)
+        public ActionResult Edit([Bind(Include = "Id,Title")] Category category)
         {
-            
-            POI poi = new POI();
             if (ModelState.IsValid)
             {
-                var category = db.Categories.Include(p => p.POIs).FirstOrDefault(i => i.Id == vm.Category.Id);
-                category.Title = vm.Category.Title;
-                category.POIs = new List<POI>();
-                try
-                {
-                    if (vm.IdSelectedPOI.Any())
-                    {
-                        foreach (int i in vm.IdSelectedPOI)
-                        {
-                            category.POIs.Add(db.POIs.Find(i));
-                        }
-                    }
-
-                    vm.POIs = db.POIs.ToList();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Exception : {0}", e);
-                }
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(vm);
+            return View(category);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Categories/Delete/5 
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -164,7 +106,7 @@ namespace Progeaiiit.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Categories/Delete/5 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -184,4 +126,5 @@ namespace Progeaiiit.Controllers
             base.Dispose(disposing);
         }
     }
-}
+} 
+
