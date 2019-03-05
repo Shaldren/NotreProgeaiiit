@@ -19,6 +19,7 @@ namespace BO
 
         public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual ICollection<POI> POIs { get; set; }
+        public virtual ICollection<Position> Positions { get; set; }
 
     }
 }

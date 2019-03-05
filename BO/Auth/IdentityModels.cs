@@ -43,6 +43,10 @@ namespace BO.Auth
             modelBuilder.Entity<ApplicationUser>().HasOptional(a => a.DisplayConfiguration).WithRequired(z => z.ApplicationUser);
             modelBuilder.Entity<Inscription>().HasMany(a => a.Positions).WithMany(z => z.Inscriptions);
 
+            modelBuilder.Entity<Position>().HasKey(k => new { k.Order, k.POI_Id, k.Race_Id });
+            modelBuilder.Entity<Position>().HasRequired(z => z.Race).WithMany(z => z.Positions).HasForeignKey(t => t.Race_Id);
+            modelBuilder.Entity<Position>().HasRequired(z => z.POI).WithMany(z => z.Positions).HasForeignKey(t => t.POI_Id);
+
         }
 
         public System.Data.Entity.DbSet<BO.Category> Categories { get; set; }

@@ -18,8 +18,9 @@ namespace BO
         public double CooY { get; set; }
 
         public virtual ICollection<Inscription> Inscriptions { get; set; }
+        public virtual ICollection<Position> Positions { get; set; }
 
-        
-        
+
+
     }
 }

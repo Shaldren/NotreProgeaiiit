@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201903051015457_initial.Designer.cs">
       <DependentUpon>201903051015457_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903051039387_position.cs" />
+    <Compile Include="Migrations\201903051039387_position.Designer.cs">
+      <DependentUpon>201903051039387_position.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\RaceVM.cs" />
@@ -332,6 +336,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903051015457_initial.resx">
       <DependentUpon>201903051015457_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903051039387_position.resx">
+      <DependentUpon>201903051039387_position.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

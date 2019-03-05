@@ -60,6 +60,7 @@
     <Compile Include="Auth\ApplicationUser.cs" />
     <Compile Include="Auth\IdentityModels.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Race.cs" />
     <Compile Include="DisplayConfiguration.cs" />
     <Compile Include="Inscription.cs" />
