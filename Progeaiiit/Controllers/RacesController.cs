@@ -35,7 +35,7 @@ namespace Progeaiiit.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["race"] = race;
+            ViewData["POIs"] = race.POIs.ToList();
             return View(race);
         }
 
