@@ -35,6 +35,7 @@ namespace BO.Auth
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<POI>().HasRequired(c => c.Category).WithMany(p => p.POIs);
             modelBuilder.Entity<Inscription>().HasRequired(a => a.Race).WithMany(z => z.Inscriptions);
+            modelBuilder.Entity<POI>().HasOptional(p => p.Race).WithMany(r => r.POIs);
             modelBuilder.Entity<Race>().HasMany(a => a.Inscriptions).WithRequired(z => z.Race);
             modelBuilder.Entity<Inscription>().HasRequired(a => a.ApplicationUser).WithMany(z => z.Inscriptions);
             modelBuilder.Entity<ApplicationUser>().HasMany(a => a.Inscriptions).WithRequired(z => z.ApplicationUser);
