@@ -121,10 +121,19 @@ namespace Progeaiiit.Controllers
                 poi.CooX = vm.POI.CooX;
                 poi.CooY = vm.POI.CooY;
                 poi.Name = vm.POI.Name;
-                poi.Category = vm.POI.Category;
                 poi.Race = vm.POI.Race;
+                try
+                {
+                    int idSelected = vm.IdSelectedCategory;
+                    Category newCategory = new Category();
+                    newCategory = db.Categories.SingleOrDefault(c => c.Id == idSelected);
+                    poi.Category = newCategory;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(" Exception : {0}", e);
+                }
                 
-
                 db.Entry(poi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
