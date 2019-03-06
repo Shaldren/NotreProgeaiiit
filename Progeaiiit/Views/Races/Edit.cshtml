@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Race.Pois, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Race.POIs, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.IdSelectedPOI, Model.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }), "Aucune POI", new { htmlAttributes = new { @class = "form-control" } })
             </div>
@@ -75,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Race.Inscriptions, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IdSelectedInscription, Model.Inscriptions.Select(p => new SelectListItem { Text = p.ApplicationUserId, Value = p.Id.ToString() }), "Aucune Inscriptions", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.IdSelectedInscription, Model.Inscriptions.Select(p => new SelectListItem { Text = p.ApplicationUser.Id, Value = p.Id.ToString() }), "Aucune Inscriptions", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 

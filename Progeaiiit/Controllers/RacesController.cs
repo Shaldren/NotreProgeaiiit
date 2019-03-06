@@ -55,16 +55,22 @@ namespace Progeaiiit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RaceVM vm)
         {
+            List<POI> POIs = new List<POI>();
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     if (vm.IdSelectedPOI.Any())
-                    {
+                    {                        
                         foreach (int i in vm.IdSelectedPOI)
                         {
-                            vm.Race.POIs.Add(db.POIs.Find(i));
+                            POI poi = new POI();
+                            poi = db.POIs.FirstOrDefault(p => p.Id == i);
+                            POIs.Add(poi);                            
                         }
+
+                        vm.Race.POIs = POIs;
                     }
                 }
                 catch (Exception e)
@@ -147,7 +153,8 @@ namespace Progeaiiit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(RaceVM vm)
         {
-            POI poi = new POI();
+            List<POI> POIs = new List<POI>();
+            //POI poi = new POI();
             Inscription inscription = new Inscription();
 
             if (ModelState.IsValid)
@@ -168,8 +175,12 @@ namespace Progeaiiit.Controllers
                     {
                         foreach (int i in vm.IdSelectedPOI)
                         {
-                            race.POIs.Add(db.POIs.Find(i));
+                            POI poi = new POI();
+                            poi = db.POIs.FirstOrDefault(p => p.Id == i);
+                            POIs.Add(poi);
                         }
+
+                        vm.Race.POIs = POIs;
                     }
 
                     vm.POIs = db.POIs.ToList();
