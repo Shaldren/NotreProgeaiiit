@@ -57,20 +57,16 @@ namespace Progeaiiit.Controllers
             {
                 try
                 {
-                    if (vm.IdSelectedCategory.Any())
-                    {
-                        foreach (int i in vm.IdSelectedCategory)
-                        {
-                            Category newCategory = new Category();
-                            newCategory = db.Categories.SingleOrDefault(c => c.Id == i);
-                            vm.Categories.Add(newCategory);
-                        }
-                    }
+                    int idSelected = vm.IdSelectedCategory;
+                    Category newCategory = new Category();
+                    newCategory = db.Categories.SingleOrDefault(c => c.Id == idSelected);
+                    vm.POI.Category = newCategory;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(" Exception : {0}", e);
                 }
+
                 db.POIs.Add(vm.POI);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -100,7 +96,7 @@ namespace Progeaiiit.Controllers
             {
                 if (pOI.Category != null)
                 {
-                    vm.IdSelectedCategory.Add(pOI.Category.Id);
+                    vm.IdSelectedCategory = pOI.Category.Id;
                 }                    
             }
             catch (Exception e)
