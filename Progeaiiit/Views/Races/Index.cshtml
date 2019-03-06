@@ -29,9 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DateEnd)
         </th>                                
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.POIs)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Inscriptions)
         </th>
@@ -58,11 +58,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateEnd)
         </td>                               
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.POIs)
-        </td>
+        </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.Inscriptions)
+            @Html.DisplayFor(modelItem => item.Inscriptions.Count)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

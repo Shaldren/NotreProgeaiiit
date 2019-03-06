@@ -43,8 +43,8 @@ namespace Progeaiiit.Controllers
         public ActionResult Create()
         {
 			var vm = new RaceVM();
-			vm.POIs = db.POIs.ToList();
-			vm.Inscriptions = db.Inscriptions.ToList();
+			vm.POIs = db.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString()}).ToList();
+			vm.Inscriptions = db.Inscriptions.Select(i => new SelectListItem { Text = i.ApplicationUser.UserName, Value = i.Id.ToString() }).ToList();
             return View(vm);
         }
 
@@ -55,16 +55,24 @@ namespace Progeaiiit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RaceVM vm)
         {
+            List<POI> POIs = new List<POI>();
+            List<Inscription> inscriptions = new List<Inscription>();
+            POI poi = new POI();
+            Inscription inscription = new Inscription();
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     if (vm.IdSelectedPOI.Any())
-                    {
+                    {                        
                         foreach (int i in vm.IdSelectedPOI)
-                        {
-                            vm.Race.POIs.Add(db.POIs.Find(i));
+                        {                            
+                            poi = db.POIs.FirstOrDefault(p => p.Id == i);
+                            POIs.Add(poi);                            
                         }
+
+                        vm.Race.POIs = POIs;
                     }
                 }
                 catch (Exception e)
@@ -75,12 +83,15 @@ namespace Progeaiiit.Controllers
                 try
                 {                
                     if (vm.IdSelectedInscription.Any())
+                    {
+                        foreach (int i in vm.IdSelectedInscription)
                         {
-                            foreach (int i in vm.IdSelectedInscription)
-                            {
-                                vm.Race.Inscriptions.Add(db.Inscriptions.Find(i));
-                            }
-                        }                    
+                            inscription = db.Inscriptions.FirstOrDefault(p => p.Id == i);
+                            inscriptions.Add(inscription);
+                        }
+
+                        vm.Race.Inscriptions = inscriptions;
+                    }                    
                 }
                 catch (Exception e)
                 {
@@ -110,9 +121,9 @@ namespace Progeaiiit.Controllers
             }
 
 			var vm = new RaceVM();
-			vm.POIs = db.POIs.ToList();
-			vm.Inscriptions = db.Inscriptions.ToList();
-			vm.Race = race;
+            vm.POIs = db.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+            vm.Inscriptions = db.Inscriptions.Select(i => new SelectListItem { Text = i.ApplicationUser.UserName, Value = i.Id.ToString() }).ToList();
+            vm.Race = race;
             
             try
             {
@@ -167,12 +178,13 @@ namespace Progeaiiit.Controllers
                     if (vm.IdSelectedPOI.Any())
                     {
                         foreach (int i in vm.IdSelectedPOI)
-                        {
-                            race.POIs.Add(db.POIs.Find(i));
+                        {                            
+                            poi = db.POIs.FirstOrDefault(p => p.Id == i);
+                            race.POIs = db.POIs.Where(p => vm.IdSelectedPOI.Contains(p.Id)).ToList();
                         }
+                        //vm.Race.POIs = POIs;
                     }
-
-                    vm.POIs = db.POIs.ToList();
+                    //vm.POIs = db.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
                 }
                 catch (Exception e)
                 {
@@ -185,12 +197,13 @@ namespace Progeaiiit.Controllers
                     {
                         foreach (int i in vm.IdSelectedInscription)
                         {
-                            race.Inscriptions.Add(db.Inscriptions.Find(i));
+                            inscription = db.Inscriptions.FirstOrDefault(p => p.Id == i);
+                            race.Inscriptions = db.Inscriptions.Where(p => vm.IdSelectedInscription.Contains(p.Id)).ToList();
                         }
                     }
-                    
-                    vm.Inscriptions = db.Inscriptions.ToList();                    
-                }
+
+                    //vm.Inscriptions = db.Inscriptions.Select(i => new SelectListItem { Text = i.ApplicationUser.UserName, Value = i.Id.ToString() }).ToList();
+                }                             
                 catch (Exception e)
                 {
                     Console.WriteLine("Exception : {0}",e);
