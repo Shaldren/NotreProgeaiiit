@@ -91,19 +91,12 @@ namespace Progeaiiit.Controllers
             var vm = new POIVM();
             vm.Categories = db.Categories.ToList();
             vm.POI = pOI;
-
-            try
+            
+            if (pOI.Category != null)
             {
-                if (pOI.Category != null)
-                {
-                    vm.IdSelectedCategory = pOI.Category.Id;
-                }                    
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception : {0}", e);
-            }
-
+                vm.IdSelectedCategory = pOI.Category.Id;
+            }                 
+            
             return View(vm);
         }
 
