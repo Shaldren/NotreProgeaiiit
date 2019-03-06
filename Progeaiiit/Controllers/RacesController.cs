@@ -177,6 +177,7 @@ namespace Progeaiiit.Controllers
                 {
                     if (vm.IdSelectedPOI.Any())
                     {
+
                         foreach (int i in vm.IdSelectedPOI)
                         {                            
                             poi = db.POIs.FirstOrDefault(p => p.Id == i);
