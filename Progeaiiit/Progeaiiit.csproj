@@ -231,6 +231,18 @@
     <Compile Include="Migrations\201903060852504_race_optionnel.Designer.cs">
       <DependentUpon>201903060852504_race_optionnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903070841145_tamer.cs" />
+    <Compile Include="Migrations\201903070841145_tamer.Designer.cs">
+      <DependentUpon>201903070841145_tamer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903070902566_tamer1.cs" />
+    <Compile Include="Migrations\201903070902566_tamer1.Designer.cs">
+      <DependentUpon>201903070902566_tamer1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071124240_tamer2.cs" />
+    <Compile Include="Migrations\201903071124240_tamer2.Designer.cs">
+      <DependentUpon>201903071124240_tamer2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\POIVM.cs" />
@@ -361,6 +373,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903060852504_race_optionnel.resx">
       <DependentUpon>201903060852504_race_optionnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903070841145_tamer.resx">
+      <DependentUpon>201903070841145_tamer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903070902566_tamer1.resx">
+      <DependentUpon>201903070902566_tamer1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071124240_tamer2.resx">
+      <DependentUpon>201903071124240_tamer2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

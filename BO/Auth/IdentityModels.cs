@@ -40,7 +40,7 @@ namespace BO.Auth
             modelBuilder.Entity<Inscription>().HasRequired(a => a.ApplicationUser).WithMany(z => z.Inscriptions);
             modelBuilder.Entity<ApplicationUser>().HasMany(a => a.Inscriptions).WithRequired(z => z.ApplicationUser);
             modelBuilder.Entity<ApplicationUser>().HasOptional(a => a.DisplayConfiguration).WithRequired(z => z.ApplicationUser);
-            
+            modelBuilder.Entity<ApplicationUser>().HasMany(a => a.Races).WithRequired(z => z.Creator);
         }
 
         public System.Data.Entity.DbSet<BO.Category> Categories { get; set; }

@@ -9,13 +9,16 @@ using System.Web.Mvc;
 using BO;
 using Progeaiiit.Models;
 using BO.Auth;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Progeaiiit.Controllers
 {
     public class RacesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+               
         // GET: Races
         public ActionResult Index()
         {
@@ -59,6 +62,10 @@ namespace Progeaiiit.Controllers
             List<Inscription> inscriptions = new List<Inscription>();
             POI poi = new POI();
             Inscription inscription = new Inscription();
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            ApplicationUser currentCreator = userManager.FindById(User.Identity.GetUserId());
+            vm.Race.Creator = currentCreator;
 
             if (ModelState.IsValid)
             {

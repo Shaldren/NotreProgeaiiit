@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO.Auth;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace BO
         public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual ICollection<POI> POIs { get; set; }
         
-
+        public ApplicationUser Creator { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace Progeaiiit.Models
 		public List<SelectListItem> Inscriptions { get; set; }
 		public List<int> IdSelectedPOI { get; set; }
 		public List<int> IdSelectedInscription { get; set; }
-	}
+
+        //public ApplicationUserManager Creator { get; set; }
+    }
 }

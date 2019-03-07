@@ -11,5 +11,6 @@ namespace BO.Auth
 
         public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual DisplayConfiguration DisplayConfiguration { get; set; }
+        public virtual ICollection<Race> Races { get; set; }
     }
 }
