@@ -58,13 +58,21 @@
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Creator.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator.Email)
+        </dd>
+
         @{
             Html.RenderPartial("MapView");
         }
 
     </dl>
 </div>
-<p>
+<p> 
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

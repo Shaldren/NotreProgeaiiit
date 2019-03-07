@@ -28,12 +28,18 @@ namespace Progeaiiit.Controllers
         // GET: Races/Details/5
         public ActionResult Details(int? id)
         {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            ApplicationUser currentCreator = userManager.FindById(User.Identity.GetUserId());
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Race race = db.Races.Find(id);
             //race.Pois.OrderBy(o => o.Order);
+
+            race.Creator = currentCreator;
             if (race == null)
             {
                 return HttpNotFound();
