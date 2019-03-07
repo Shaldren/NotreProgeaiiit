@@ -1,5 +1,6 @@
 ﻿@model Progeaiiit.Models.RaceVM
 @Styles.Render("~/Scripts/jquery-ui-1.12.1/jquery-ui.min.css")
+@Styles.Render("http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css")
 
 @{
     ViewBag.Title = "Create";
@@ -12,80 +13,83 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Race</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <h4>Race</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Race.Title, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Race.Title, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Race.Description, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Race.Description, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.City, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.City, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Race.City, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.City, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Race.City, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Race.ZipCode, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Race.ZipCode, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.DateStart, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                @Html.ValidationMessageFor(model => model.Race.DateStart, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.DateStart, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.Race.DateStart, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Race.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Race.DateEnd, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                @Html.ValidationMessageFor(model => model.Race.DateEnd, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.DateEnd, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.Race.DateEnd, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Race.POIs, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.IdSelectedPOI, Model.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }), "Aucune POI", new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Race.Inscriptions, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.IdSelectedInscription, Model.Inscriptions.Select(p => new SelectListItem { Text = p.ApplicationUser.Id, Value = p.Id.ToString() }), "Aucune Inscriptions", new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>*@
-
-        <div class="form-group">
+    @*<div class="form-group">
             @Html.LabelFor(model => model.Race.POIs, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(model => model.IdSelectedPOI, Model.POIs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Race.POIs, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.IdSelectedPOI, Model.POIs.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }), "Aucune POI", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Race.Inscriptions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdSelectedInscription, Model.Inscriptions.Select(p => new SelectListItem { Text = p.ApplicationUser.Id, Value = p.Id.ToString() }), "Aucune Inscriptions", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Race.POIs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBoxFor(model => model.IdSelectedPOI, Model.POIs, new { @class = "listbox" })
+            @Html.ValidationMessageFor(model => model.Race.POIs, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*Formulaire POI
+        @{Html.RenderAction("Create", "POIs");}
 
         <div class="form-group">
             @Html.LabelFor(model => model.Race.Inscriptions, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -93,14 +97,14 @@
                 @Html.ListBoxFor(model => model.IdSelectedInscription, Model.Inscriptions, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Race.Inscriptions, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -110,11 +114,15 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js")
+    @Scripts.Render("http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js")
 
     <script type="text/javascript">
         $(function () {
             $('.datepicker').datepicker({
                 dateFormat: "dd/mm/yy"
+            });
+
+            $('.listbox').multiselect({
             });
         });
     </script>

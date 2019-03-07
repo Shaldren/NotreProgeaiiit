@@ -15,7 +15,9 @@ namespace BO
         public string Description { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateStart { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateEnd { get; set; }
 
         public virtual ICollection<Inscription> Inscriptions { get; set; }
