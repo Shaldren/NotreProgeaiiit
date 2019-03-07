@@ -38,7 +38,7 @@ namespace Progeaiiit.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["race"] = race;
+            ViewData["POIs"] = race.POIs.ToList();
             return View(race);
         }
 
@@ -184,6 +184,7 @@ namespace Progeaiiit.Controllers
                 {
                     if (vm.IdSelectedPOI.Any())
                     {
+
                         foreach (int i in vm.IdSelectedPOI)
                         {                            
                             poi = db.POIs.FirstOrDefault(p => p.Id == i);
