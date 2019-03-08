@@ -178,8 +178,9 @@ namespace Progeaiiit.Controllers
             {
 				var race = db.Races.Include(p => p.POIs).FirstOrDefault(i => i.Id == vm.Race.Id);
 				race.City = vm.Race.City;
-				race.DateEnd = vm.Race.DateEnd;
-				race.DateStart = vm.Race.DateStart;
+                race.DateStart = vm.Race.DateStart;
+                race.DateEnd = vm.Race.DateEnd;
+                race.RaceTime = vm.Race.RaceTime;
 				race.Description = vm.Race.Description;
 				race.Title = vm.Race.Title;
 				race.ZipCode = vm.Race.ZipCode;
