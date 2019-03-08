@@ -243,6 +243,26 @@
     <Compile Include="Migrations\201903071124240_tamer2.Designer.cs">
       <DependentUpon>201903071124240_tamer2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071557066_racetime.cs" />
+    <Compile Include="Migrations\201903071557066_racetime.Designer.cs">
+      <DependentUpon>201903071557066_racetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071602583_racetime1.cs" />
+    <Compile Include="Migrations\201903071602583_racetime1.Designer.cs">
+      <DependentUpon>201903071602583_racetime1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071617492_racetime2.cs" />
+    <Compile Include="Migrations\201903071617492_racetime2.Designer.cs">
+      <DependentUpon>201903071617492_racetime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071619421_racetime3.cs" />
+    <Compile Include="Migrations\201903071619421_racetime3.Designer.cs">
+      <DependentUpon>201903071619421_racetime3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903080804254_racetime4.cs" />
+    <Compile Include="Migrations\201903080804254_racetime4.Designer.cs">
+      <DependentUpon>201903080804254_racetime4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\POIVM.cs" />
@@ -382,6 +402,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903071124240_tamer2.resx">
       <DependentUpon>201903071124240_tamer2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071557066_racetime.resx">
+      <DependentUpon>201903071557066_racetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071602583_racetime1.resx">
+      <DependentUpon>201903071602583_racetime1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071617492_racetime2.resx">
+      <DependentUpon>201903071617492_racetime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071619421_racetime3.resx">
+      <DependentUpon>201903071619421_racetime3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903080804254_racetime4.resx">
+      <DependentUpon>201903080804254_racetime4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

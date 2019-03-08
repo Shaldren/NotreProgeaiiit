@@ -18,7 +18,8 @@ namespace BO
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateStart { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DateEnd { get; set; }
+        public DateTime DateEnd { get; set; }       
+        public TimeSpan RaceTime { get; set; }
 
         public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual ICollection<POI> POIs { get; set; }

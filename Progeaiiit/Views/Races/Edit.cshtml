@@ -68,6 +68,13 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Race.RaceTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Race.RaceTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Race.POIs, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.ListBoxFor(model => model.IdSelectedPOI, Model.POIs, new { @class = "listbox" })
@@ -108,6 +115,9 @@
 
             $('.listbox').multiselect({
             });
+
+            $('.timepicker').timepicker({
+            })
         });
     </script>
 }

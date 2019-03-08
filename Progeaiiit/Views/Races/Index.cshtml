@@ -28,7 +28,10 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateEnd)
-        </th>                                
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RaceTime)
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.POIs)
         </th>*@
@@ -57,7 +60,10 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateEnd)
-        </td>                               
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaceTime)
+        </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.POIs)
         </td>*@
@@ -65,9 +71,9 @@
             @Html.DisplayFor(modelItem => item.Inscriptions.Count)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
