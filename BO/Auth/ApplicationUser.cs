@@ -10,7 +10,7 @@ namespace BO.Auth
     {
         public int id { get; set; }
         public virtual ICollection<Inscription> Inscriptions { get; set; }
-        public ICollection<DisplayConfiguration> DisplayConfigurations { get; set; }
+        public DisplayConfiguration DisplayConfiguration { get; set; }
         public virtual ICollection<Race> Races { get; set; }
         public DateTime BirthDate { get; set; }
         public string FirstName { get; set; }
